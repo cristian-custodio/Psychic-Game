@@ -1,38 +1,54 @@
 
-var hiddenLetter = "";
+//Global Variables
+var hiddenLetter = generateRandomLetter();
+var wins = 0;
+var losses = 0;
+var remainingGuesses = 9;
 
-//Random Declaration
-var randomNumber = Math.floor(Math.random() * 27);
-console.log(randomNumber);
 
 //This Function is ran whenever the user presses a key
 document.onkeyup = function(event) {
     //LowerCase user entry
     var userInput = event.key.toLowerCase();
-
-
-
-}
-
-
-function resetGame() {
+    console.log(userInput);
+    checkUserinput(userInput);
     
 }
 
-function checkUserinput() {
 
+
+
+
+function checkUserinput(userInput) {
+    if (userInput === hiddenLetter) {
+        wins++;
+        newComputerLetter();
+        remainingGuesses = 9;
+        updateScore();
+    } else {
+        remainingGuesses--;
+        if(remainingGuesses < 1) {
+            losses++;
+            remainingGuesses = 9;
+            newComputerLetter();
+            updateScore();
+        }
+    }
+
+    updateScore();
+}
+
+function newComputerLetter() {
+    hiddenLetter = generateRandomLetter();
 }
 
 function updateScore() {
-
+    document.getElementById("Wins").innerHTML = "Wins: " + wins.toString();
+    document.getElementById("Losses").innerHTML = "Losses: " + losses.toString();
+    document.getElementById("Guesses Left").innerHTML = "Guesses Left: " + remainingGuesses.toString();
+    document.getElementById("Guesses").innerHTML = "Your Guesses so far: ";
 }
 
-function beginGame() {
-    
-
-
-    console.log(randomNumber);
-}
 
 function generateRandomLetter() {
     var randomLetter = "";
@@ -40,85 +56,88 @@ function generateRandomLetter() {
     
     switch (randomNumber) {
         case 0:
-        randomLetter = a
+        randomLetter = "a"
         break;
         case 1:
-        randomLetter = b
+        randomLetter = "b"
         break;
         case 2:
-        randomLetter = c
+        randomLetter = "c"
         break;
         case 3:
-        randomLetter = d
+        randomLetter = "d"
         break;
         case 4:
-        randomLetter = e
+        randomLetter = "e"
         break;
         case 5:
-        randomLetter = f
+        randomLetter = "f"
         break;
         case 6:
-        randomLetter = g
+        randomLetter = "g"
         break;
         case 7:
-        randomLetter = h
+        randomLetter = "h"
         break;
         case 8:
-        randomLetter = i
+        randomLetter = "i"
         break;
         case 9:
-        randomLetter = a
+        randomLetter = "j"
         break;
         case 10:
-        randomLetter = a
+        randomLetter = "k"
         break;
         case 11:
-        randomLetter = a
+        randomLetter = "l"
         break;
         case 12:
-        randomLetter = a
+        randomLetter = "m"
         break;
         case 13:
-        randomLetter = a
+        randomLetter = "n"
         break;
         case 14:
-        randomLetter = a
+        randomLetter = "o"
         break;
         case 15:
-        randomLetter = a
+        randomLetter = "p"
         break;
         case 16:
-        randomLetter = a
+        randomLetter = "q"
         break;
         case 17:
-        randomLetter = a
+        randomLetter = "r"
         break;
         case 18:
-        randomLetter = a
+        randomLetter = "s"
         break;
         case 19:
-        randomLetter = a
+        randomLetter = "s"
         break;
         case 20:
-        randomLetter = a
+        randomLetter = "t"
         break;
         case 21:
-        randomLetter = a
+        randomLetter = "u"
         break;
         case 22:
-        randomLetter = a
+        randomLetter = "v"
         break;
         case 23:
-        randomLetter = a
+        randomLetter = "w"
         break;
         case 24:
-        randomLetter = a
+        randomLetter = "x"
         break;
         case 25:
-        randomLetter = a
+        randomLetter = "y"
         break;
         case 26:
-        randomLetter = a
+        randomLetter = "z"
         break;
     }
+        console.log("Computer Chose " + randomLetter);
+    return randomLetter;
+    
 }
