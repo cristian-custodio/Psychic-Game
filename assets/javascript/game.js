@@ -4,6 +4,7 @@ var hiddenLetter = generateRandomLetter();
 var wins = 0;
 var losses = 0;
 var remainingGuesses = 9;
+var userGuesses = [];
 
 
 //This Function is ran whenever the user presses a key
@@ -25,13 +26,16 @@ function checkUserinput(userInput) {
         newComputerLetter();
         remainingGuesses = 9;
         updateScore();
+        userGuesses = [];
     } else {
         remainingGuesses--;
+        userGuesses.push(userInput);
         if(remainingGuesses < 1) {
             losses++;
             remainingGuesses = 9;
             newComputerLetter();
             updateScore();
+            userGuesses = [];
         }
     }
 
@@ -46,8 +50,9 @@ function updateScore() {
     document.getElementById("Wins").innerHTML = "Wins: " + wins.toString();
     document.getElementById("Losses").innerHTML = "Losses: " + losses.toString();
     document.getElementById("Guesses Left").innerHTML = "Guesses Left: " + remainingGuesses.toString();
-    document.getElementById("Guesses").innerHTML = "Your Guesses so far: ";
+    document.getElementById("Guesses").innerHTML = "Your Guesses so far: " + userGuesses.join(", ");
 }
+
 
 
 function generateRandomLetter() {
